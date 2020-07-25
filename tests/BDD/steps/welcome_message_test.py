@@ -15,14 +15,10 @@ def console_output():
 
 @given("I'm installing the dev env for K8s")
 def installing_k8s():
-    pass    
+    assert False    
 
 
 @when('the console print the welcome message')
 @then('I read the render of the welcome.md file.')
 def read_the_md_file(console_output):
-    if "Welcome" in console_output:
-        assert True
-    else:
-        assert False
-    
+    assert "Welcome" in console_output
