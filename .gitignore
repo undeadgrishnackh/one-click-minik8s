@@ -1,0 +1,4 @@
+*.iml
+/.idea
+/common/test/results
+/.vscode
