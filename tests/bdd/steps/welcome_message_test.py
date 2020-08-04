@@ -1,10 +1,11 @@
-import pytest
 import sys
-from pytest_bdd import scenarios, given, when, then
+
+import pytest
+from pytest_bdd import given, scenarios, then, when
+
 from src.welcome import Welcome
 
-
-scenarios('../features/welcome_message.feature')
+scenarios("../features/welcome_message.feature")
 
 
 @pytest.fixture
@@ -18,12 +19,12 @@ def exec_k8s_installer():
     assert True
 
 
-@when('the console print the welcome message')
+@when("the console print the welcome message")
 def sniff_the_output_buffer():
     # the output buffer must be not empty
-    assert True    
+    assert True
 
 
-@then('I read the render of the welcome.md file.')
+@then("I read the render of the welcome.md file.")
 def read_the_md_file(console_output):
     assert "Welcome" in console_output
