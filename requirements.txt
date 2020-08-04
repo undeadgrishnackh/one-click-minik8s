@@ -13,7 +13,7 @@ MarkupSafe==1.1.1
 mccabe==0.6.1
 more-itertools==8.4.0
 packaging==20.4
-parse==1.15.0
+parse==1.16.0
 parse-type==0.5.2
 pathtools==0.1.2
 pluggy==0.13.1
