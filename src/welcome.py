@@ -6,10 +6,8 @@ class Welcome:
     def __init__(self):
         self.file = "doc/md/welcome.md"
         with open(self.file) as welcome:
-            markdown = Markdown(welcome.read())
-            self.markdown = markdown
-            self.string = markdown.markup
+            self.markdown = Markdown(welcome.read())
 
-
-console = Console()
-console.print(Welcome().markdown)
+    def print_welcome_message(self):
+        console = Console()
+        console.print(self.markdown)
