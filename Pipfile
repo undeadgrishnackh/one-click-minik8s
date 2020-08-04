@@ -6,6 +6,12 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+pre-commit = "*"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+test = "pytest"
+coverage = "pytest --cov-report term --cov='.' tests/"
+watch = "ptw tests/ -- --cov-report term --cov='.' tests/"
