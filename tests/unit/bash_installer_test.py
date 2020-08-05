@@ -11,3 +11,8 @@ def test_exec_the_installer_and_get_the_welcome_message():
     cmdOut = cmdProcess.communicate()[0]
     # the console flush a bytestream, so the assert has to be as byte: b"pattern"
     assert b"Welcome to one-click-miniK8s" in cmdOut
+
+
+# TODO: change the test to trap an exit selection from the user
+
+# TODO: check the exit code of the script is 0
