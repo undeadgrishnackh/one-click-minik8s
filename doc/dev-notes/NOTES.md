@@ -15,7 +15,7 @@
 
 ## 🧪 Spike B
 0. create structure OS-based
-1. install inspec via curl (or if brew is installed automate it via brew)
+1. install inspec via curl (or if the package manager - brew - is installed use it without installing it again)
 2. install brew
 3. brew doctor
 4. install the other pieces and test them with inspec
