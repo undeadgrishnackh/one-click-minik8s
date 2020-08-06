@@ -1,16 +1,17 @@
 import inquirer
+from menu_options.exit import Exit
 from rich.console import Console
 
 
-class Step:
+class Menu:
     def __init__(self):
         self.console = Console()
 
     steps = {
-        1: {"stepDesc": "Check the system requirements", "stepAction": "check"},
-        2: {"stepDesc": "Test miniK8s", "stepAction": "test"},
-        3: {"stepDesc": "Install miniK8s", "stepAction": "install"},
-        4: {"stepDesc": "Exit", "stepAction": "exit"},
+        1: {"stepDesc": "Check the system requirements", "optionClass": "Check"},
+        2: {"stepDesc": "Test miniK8s", "optionClass": "Test"},
+        3: {"stepDesc": "Install miniK8s", "optionClass": "Install"},
+        4: {"stepDesc": "Exit", "optionClass": "Exit"},
     }
     choices = []
     message = "What do you need from the installer?"
@@ -31,14 +32,13 @@ class Step:
     def get_the_action(self):
         for index in self.steps:
             if self.answer["step"] == self.steps[index]["stepDesc"]:
-                return self.steps[index]["stepAction"]
+                return self.steps[index]["optionClass"]
             pass
         return None
 
 
-installer = Step()
+# TODO: create a metod to handle the menu interaction - The spike to delegate the class creation at run time is working.
+installer = Menu()
 installer.get_the_answer()
-print(installer.get_the_action())
-
-
-# TODO: the spike with the selector is done. Now revert and create the tests for the selection.
+optionClass = installer.get_the_action()
+globals()[optionClass]().perform_the_action()
