@@ -7,7 +7,7 @@ from src.console_markdown_welcome import Welcome
 
 
 @pytest.fixture
-def welcome_screen():
+def welcome_screen() -> Welcome:
     return Welcome()
 
 

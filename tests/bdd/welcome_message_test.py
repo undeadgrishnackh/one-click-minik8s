@@ -4,17 +4,17 @@ import sys
 import pytest
 from pytest_bdd import given, scenarios, then, when
 
-from src.bash_installer import Installer
+from src.installer import Installer
 
 scenarios("./features/welcome_message.feature")
 
 
-@pytest.fixture
+@pytest.fixture(scope="session", autouse=True)
 def bash_installer_process():
     return subprocess.Popen("./install_minik8s", stdout=subprocess.PIPE)
 
 
-@pytest.fixture
+@pytest.fixture(scope="session", autouse=True)
 def bash_installer_output(bash_installer_process):
     return bash_installer_process.communicate()[0]
 
@@ -30,5 +30,6 @@ def sniff_the_output_buffer(bash_installer_output):
 
 
 @then("I read the render of the welcome.md file.")
-def read_the_md_file(bash_installer_output):
+def read_the_md_file(bash_installer_output, bash_installer_process):
     assert b"Welcome" in bash_installer_output
+    bash_installer_process.kill()

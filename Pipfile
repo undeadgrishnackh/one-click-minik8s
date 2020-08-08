@@ -11,7 +11,7 @@ flake8 = "*"
 pytest-describe-it = "*"
 pytest-html = "*"
 pytest-sugar = "*"
-inquirer = "*"
+pynput = "*"
 
 [requires]
 python_version = "3.7"

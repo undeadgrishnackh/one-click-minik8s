@@ -1,6 +1,7 @@
-import inquirer
-from menu_options.exit import Exit
 from rich.console import Console
+from rich.table import Table
+
+from src.menu_elements.exit import Exit
 
 
 class Menu:
@@ -8,37 +9,55 @@ class Menu:
         self.console = Console()
 
     steps = {
-        1: {"stepDesc": "Check the system requirements", "optionClass": "Check"},
-        2: {"stepDesc": "Test miniK8s", "optionClass": "Test"},
-        3: {"stepDesc": "Install miniK8s", "optionClass": "Install"},
-        4: {"stepDesc": "Exit", "optionClass": "Exit"},
+        1: {
+            "stepDesc": "[bold red](C)[/bold red]heck the system requirements",
+            "stepKey": "C",
+            "optionClass": "Check",
+        },
+        2: {
+            "stepDesc": "[bold red](T)[/bold red]est miniK8s",
+            "stepKey": "T",
+            "optionClass": "Test",
+        },
+        3: {
+            "stepDesc": "[bold red](I)[/bold red]nstall miniK8s",
+            "stepKey": "I",
+            "optionClass": "Install",
+        },
+        4: {
+            "stepDesc": "[bold red](E)[/bold red]xit",
+            "stepKey": "E",
+            "optionClass": "Exit",
+        },
     }
-    choices = []
-    message = "What do you need from the installer?"
+    message = "[red]>>>[/red] What do you need from the installer :question:"
     answer = ""
 
-    def get_options(self):
+    def print_the_menu_and_wait_the_answer(self):
+        table = Table()
+        table.add_column(self.message, justify="left", style="white", no_wrap=True)
         for index in self.steps:
-            self.choices.append(self.steps[index]["stepDesc"])
+            table.add_row(self.steps[index]["stepDesc"])
             pass
-        return self.choices
+        self.console.print(table)
+        self.get_a_valid_answer()
 
-    def get_the_answer(self):
-        self.answer = inquirer.prompt(
-            [inquirer.List("step", message=self.message, choices=self.get_options())]
-        )
-        print(self.answer)
-
-    def get_the_action(self):
+    def get_a_valid_answer(self):
+        self.answer = input(">>> ")
         for index in self.steps:
-            if self.answer["step"] == self.steps[index]["stepDesc"]:
+            if self.answer.upper() == self.steps[index]["stepKey"].upper():
+                return
+            pass
+        self.console.print("[bold red]Invalid option![/bold red]")
+        self.get_a_valid_answer()
+
+    def get_the_action_class(self):
+        for index in self.steps:
+            if self.answer.upper() == self.steps[index]["stepKey"].upper():
                 return self.steps[index]["optionClass"]
             pass
         return None
 
-
-# TODO: create a metod to handle the menu interaction - The spike to delegate the class creation at run time is working.
-installer = Menu()
-installer.get_the_answer()
-optionClass = installer.get_the_action()
-globals()[optionClass]().perform_the_action()
+    def perform_the_action(self):
+        menu_element_implementation = self.get_the_action_class()
+        globals()[menu_element_implementation]().perform_the_action()
