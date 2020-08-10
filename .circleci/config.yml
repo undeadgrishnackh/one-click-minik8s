@@ -24,7 +24,7 @@ jobs:
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
       - run:
-          command: pipenv run coverage
+          command: "pytest --cov-report term --cov='src'"
           name: Test with coverage
       - codecov/upload:
           file: ".coverage"
