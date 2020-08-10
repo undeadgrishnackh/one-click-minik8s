@@ -2,10 +2,13 @@ version: 2.1
 
 orbs:
   python: circleci/python@0.2.1
+  codecov: codecov/codecov@1.0.1
 
 jobs:
   build-and-test:
-    executor: python/default
+    #executor: python/default
+    docker:
+      - image: circleci/python:3.7.1
     steps:
       - checkout
       - restore_cache:  # ensure this step occurs *before* installing dependencies
@@ -20,9 +23,12 @@ jobs:
             - ".venv"
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
-      - run:
-          command: ./manage.py test
-          name: Test
+      - test_with_coverage:
+          command: pipenv run coverage
+          name: Test with coverage
+      - codecov/upload:
+          file: {{ c.coverage }}
+          token: ${CODECOV_TOKEN}
 workflows:
   main:
     jobs:
