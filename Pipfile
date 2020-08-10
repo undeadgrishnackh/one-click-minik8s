@@ -11,6 +11,9 @@ flake8 = "*"
 pytest-describe-it = "*"
 pytest-html = "*"
 pytest-sugar = "*"
+pytest-cov = "*"
+pytest = "*"
+rich = "*"
 
 [requires]
 python_version = "3.7"
