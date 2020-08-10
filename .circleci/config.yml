@@ -23,7 +23,7 @@ jobs:
             - ".venv"
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
-      - test_with_coverage:
+      - run:
           command: pipenv run coverage
           name: Test with coverage
       - codecov/upload:
