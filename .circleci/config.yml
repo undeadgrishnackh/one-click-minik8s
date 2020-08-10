@@ -27,7 +27,7 @@ jobs:
           command: pipenv run coverage
           name: Test with coverage
       - codecov/upload:
-          file: {{ .coverage }}
+          file: ".coverage"
           token: ${CODECOV_TOKEN}
 workflows:
   main:
