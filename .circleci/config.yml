@@ -24,10 +24,9 @@ jobs:
       #       - "/usr/local/bin"
       #       - "/usr/local/lib/python3.6/site-packages"
       - run:
-          command: |
-            echo `pwd`
-            ls -lax
-            pipenv run coverage
+          command:
+            source $(pipenv --venv)/bin/activate; pytest --cov-report term --cov='src' --verbose --verbosity=9 --cache-clear --rootdir='.'
+            #pipenv run coverage
           name: Test with coverage
       - codecov/upload:
           file: ".coverage"
