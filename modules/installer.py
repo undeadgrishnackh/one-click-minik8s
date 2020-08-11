@@ -1,7 +1,10 @@
+import sys
+
 from rich.console import Console
 
-from modules.installer_menu import Menu
-from modules.installer_title import Title
+sys.path.append("./")  # noqa: E402
+from modules.installer_menu import Menu  # isort:skip  # noqa: E402
+from modules.installer_title import Title  # isort:skip  # noqa: E402
 
 
 class Installer:
