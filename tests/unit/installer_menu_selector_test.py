@@ -3,10 +3,9 @@ import sys
 
 import pytest
 
-from modules.installer_menu import Menu
-from modules.menu_elements.exit import Exit
-
 sys.path.append("./")  # noqa: E402
+from modules.installer_menu import Menu  # isort:skip # noqa: E402
+from modules.menu_elements.exit import Exit  # isort:skip # noqa: E402
 
 
 @pytest.fixture
