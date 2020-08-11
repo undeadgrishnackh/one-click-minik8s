@@ -1,7 +1,7 @@
 from rich.console import Console
 from rich.table import Table
 
-from src.menu_elements.exit import Exit
+from modules.menu_elements.exit import Exit
 
 
 class Menu:

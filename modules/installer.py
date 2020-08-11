@@ -1,7 +1,7 @@
 from rich.console import Console
 
-from src.console_markdown_welcome import Welcome
-from src.installer_menu import Menu
+from modules.console_markdown_welcome import Welcome
+from modules.installer_menu import Menu
 
 
 class Installer:

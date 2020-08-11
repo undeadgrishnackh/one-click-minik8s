@@ -2,9 +2,8 @@ import subprocess
 import sys
 
 import pytest
-
-from src.installer_menu import Menu
-from src.menu_elements.exit import Exit
+from modulesinstaller_menu import Menu
+from modulesmenu_elements.exit import Exit
 
 
 @pytest.fixture

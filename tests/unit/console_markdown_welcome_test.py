@@ -1,9 +1,8 @@
 import sys
 
 import pytest
+from modulesconsole_markdown_welcome import Welcome
 from rich.markdown import Markdown
-
-from src.console_markdown_welcome import Welcome
 
 
 @pytest.fixture

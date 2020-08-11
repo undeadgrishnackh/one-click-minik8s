@@ -2,8 +2,7 @@ import subprocess
 import sys
 
 import pytest
-
-from src.installer import Installer
+from modulesinstaller import Installer
 
 
 def test_exec_the_installer_and_get_the_welcome_message():
