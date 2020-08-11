@@ -1,3 +1,6 @@
+[![undeadgrishnackh](https://circleci.com/gh/undeadgrishnackh/one-click-minik8s.svg?style=svg)](https://app.circleci.com/pipelines/github/undeadgrishnackh/one-click-minik8s)
+[![codecov](https://codecov.io/gh/undeadgrishnackh/one-click-minik8s/branch/master/graph/badge.svg)](https://codecov.io/gh/undeadgrishnackh/one-click-minik8s)
+
 # one-click _mini_ 🕋 K8s
 💡 The idea behind this project is to provide a 'one-click' installer as the welcome package for modern developers (Probably better to call them DevOps craftsmen/craftswomen). 
 
