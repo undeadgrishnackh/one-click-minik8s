@@ -2,8 +2,9 @@ import subprocess
 import sys
 
 import pytest
-from modulesinstaller import Installer
 from pytest_bdd import given, scenarios, then, when
+
+from modules.installer import Installer
 
 scenarios("./features/select_an_option_from_the_menu_test.feature")
 

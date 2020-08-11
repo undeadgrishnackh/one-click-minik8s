@@ -21,6 +21,6 @@ python_version = "3.7"
 
 [scripts]
 test = "pytest"
-coverage = "pytest --cov-report term --cov='src'"
-coverageHtml = "pytest --cov-report html --cov='src'"
-watch = "ptw tests/ -- --cov-report term --cov='src'"
+coverage = "pytest --cov-report term --cov='modules'"
+coverageHtml = "pytest --cov-report html --cov='modules'"
+watch = "ptw tests/ -- --cov-report term --cov='modules'"
