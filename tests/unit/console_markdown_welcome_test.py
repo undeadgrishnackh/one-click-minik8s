@@ -1,7 +1,6 @@
 import sys
 
 import pytest
-from rich.markdown import Markdown
 
 sys.path.append("./")  # noqa: E402
 from modules.installer_title import Title  # isort:skip  # noqa: E402
