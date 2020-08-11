@@ -5,6 +5,8 @@ import pytest
 
 from modules.installer import Installer
 
+sys.path.append("./")
+
 
 def test_exec_the_installer_and_get_the_welcome_message():
     cmd_process = subprocess.Popen("./install_minik8s", stdout=subprocess.PIPE)

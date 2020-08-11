@@ -5,6 +5,8 @@ from rich.markdown import Markdown
 
 from modules.installer_welcome import WelcomeMessage
 
+sys.path.append("./")
+
 
 @pytest.fixture
 def welcome_screen() -> WelcomeMessage:
