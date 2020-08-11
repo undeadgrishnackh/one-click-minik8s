@@ -25,8 +25,7 @@ The challenge behind the language to handle the installation workflow was not so
 
 🐍 **Python** incapsulates the installation workflow using some libs to enhance the user experience:
 - [Rich](https://github.com/willmcgugan/rich): rich text and beautiful formatting in the terminal.
-- PyInquirer: interactive command-line user interfaces.
-- PyFiglet: ASCII Text with arts fonts.
+- [PyFiglet](https://github.com/pwaller/pyfiglet): ASCII Text with arts fonts.
 
 🧬 [Inspec.io](https://community.chef.io/products/chef-inspec/) provides the test framework to validate each installation step's outcome.
 
