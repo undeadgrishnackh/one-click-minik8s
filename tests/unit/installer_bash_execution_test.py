@@ -3,9 +3,8 @@ import sys
 
 import pytest
 
-from modules.installer import Installer
-
-sys.path.append("./")
+sys.path.append("./")  # noqa: E402
+from modules.installer import Installer  # isort:skip # noqa: E402
 
 
 def test_exec_the_installer_and_get_the_welcome_message():

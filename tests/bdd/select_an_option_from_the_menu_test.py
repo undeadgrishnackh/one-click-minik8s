@@ -4,9 +4,8 @@ import sys
 import pytest
 from pytest_bdd import given, scenarios, then, when
 
-from modules.installer import Installer
-
-sys.path.append("./")
+sys.path.append("./")  # noqa: E402
+from modules.installer import Installer  # isort:skip  # noqa: E402
 
 scenarios("./features/select_an_option_from_the_menu_test.feature")
 

@@ -15,6 +15,7 @@ pytest-cov = "*"
 pytest = "*"
 rich = "*"
 pytest-bdd = "*"
+setuptools = "*"
 
 [requires]
 python_version = "3.7"

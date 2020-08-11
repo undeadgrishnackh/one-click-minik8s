@@ -3,9 +3,8 @@ import sys
 import pytest
 from rich.markdown import Markdown
 
-from modules.installer_welcome import WelcomeMessage
-
-sys.path.append("./")
+sys.path.append("./")  # noqa: E402
+from modules.installer_welcome import WelcomeMessage  # isort:skip  # noqa: E402
 
 
 @pytest.fixture
