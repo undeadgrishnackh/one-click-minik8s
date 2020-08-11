@@ -3,12 +3,12 @@ import sys
 import pytest
 from rich.markdown import Markdown
 
-from modules.installer_welcome import Welcome
+from modules.installer_welcome import WelcomeMessage
 
 
 @pytest.fixture
-def welcome_screen() -> Welcome:
-    return Welcome()
+def welcome_screen() -> WelcomeMessage:
+    return WelcomeMessage()
 
 
 def test_is_a_markdown(welcome_screen):

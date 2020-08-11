@@ -1,7 +1,7 @@
 from rich.console import Console
 
 from modules.installer_menu import Menu
-from modules.installer_welcome import Welcome
+from modules.installer_welcome import WelcomeMessage
 
 
 class Installer:
@@ -10,6 +10,6 @@ class Installer:
         self.menu = Menu()
 
     def start(self):
-        Welcome().print_welcome_message()
+        WelcomeMessage().print_welcome_message()
         self.menu.print_the_menu_and_wait_the_answer()
         self.menu.perform_the_action()
