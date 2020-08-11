@@ -8,7 +8,7 @@ from modules.installer_menu import Menu
 class Installer:
     def __init__(self):
         self.console = Console()
-        # self.menu = Menu()
+        self.menu = Menu()
 
     def start(self):
         # WelcomeMessage().print_welcome_message()
