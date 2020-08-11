@@ -3,7 +3,7 @@ import sys
 import pytest
 from rich.markdown import Markdown
 
-from modules.console_markdown_welcome import Welcome
+from modules.installer_welcome import Welcome
 
 
 @pytest.fixture

@@ -20,7 +20,7 @@ pytest-bdd = "*"
 python_version = "3.7"
 
 [scripts]
-test = "pytest"
-coverage = "pytest --cov-report term --cov='modules'"
-coverageHtml = "pytest --cov-report html --cov='modules'"
+test = "export PYTHONPATH=.; pytest"
+coverage = "export PYTHONPATH=.; pytest --cov-report term --cov='modules' --verbose --verbosity=9 --cache-clear --rootdir='.'"
+coverageHtml = "export PYTHONPATH=.;  pytest --cov-report html --cov='modules'"
 watch = "ptw tests/ -- --cov-report term --cov='modules'"
