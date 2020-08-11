@@ -144,3 +144,4 @@ cython_debug/
 /.vscode
 /.pytest_cache
 /.coverage
+/junit
