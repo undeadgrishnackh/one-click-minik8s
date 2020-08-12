@@ -25,7 +25,7 @@ jobs:
       #       - "/usr/local/lib/python3.6/site-packages"
       - run:
           command:
-            source $(pipenv --venv)/bin/activate; export PYTHONPATH=.; pytest --junitxml=junit/test-result.xml --cov-report=xml --cov-report=html --cov='modules' --verbose --verbosity=9 --cache-clear --rootdir='.'
+            source $(pipenv --venv)/bin/activate; export PYTHONPATH=.; pytest --junitxml=junit/test-result.xml --cov-report=xml --cov-report=html --cov='modules' --cache-clear --rootdir='.'
             #pipenv run coverage
           name: Test with coverage
       - codecov/upload:
