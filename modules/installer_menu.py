@@ -33,17 +33,27 @@ class Menu:
     message = "[red]>>>[/red] What do you need from the installer :question:"
     answer = ""
 
-    def print_the_menu_and_wait_the_answer(self):
+    def print_the_menu_and_wait_the_answer(
+        self, ask_the_user=True, fake_user_selection=None
+    ):
         table = Table()
         table.add_column(self.message, justify="left", style="white", no_wrap=True)
         for index in self.steps:
             table.add_row(self.steps[index]["stepDesc"])
             pass
         self.console.print(table)
-        self.get_a_valid_answer()
+        if ask_the_user:
+            self.get_a_valid_answer(fake_user_selection)
 
-    def get_a_valid_answer(self):
-        self.answer = input(">>> ")
+    def get_a_valid_answer(self, fake_user_selection=None):
+        if fake_user_selection is None:
+            self.answer = input(">>> ")
+            self.check_if_is_a_valid_answer()
+        else:
+            self.console.print(">>> " + fake_user_selection)
+            self.answer = fake_user_selection
+
+    def check_if_is_a_valid_answer(self):
         for index in self.steps:
             if self.answer.upper() == self.steps[index]["stepKey"].upper():
                 return

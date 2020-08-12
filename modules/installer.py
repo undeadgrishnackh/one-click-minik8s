@@ -11,8 +11,13 @@ class Installer:
     def __init__(self):
         self.console = Console()
         self.menu = Menu()
+        self.title = Title()
 
-    def start(self):
-        Title().print_welcome_message()
-        self.menu.print_the_menu_and_wait_the_answer()
-        self.menu.perform_the_action()
+    def start(self, print_the_menu=True, ask_the_user=True, fake_user_selection=None):
+        self.title.print_welcome_message()
+        if print_the_menu:
+            self.menu.print_the_menu_and_wait_the_answer(
+                ask_the_user, fake_user_selection
+            )
+            if ask_the_user:
+                self.menu.perform_the_action()

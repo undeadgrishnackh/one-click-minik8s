@@ -22,7 +22,7 @@ def bash_installer_process_menu() -> subprocess.Popen:
 
 
 @pytest.fixture(scope="session", autouse=True)
-def bash_installer_process_action() -> subprocess.Popen:
+def bash_installer_process_that_take_the_test_action() -> subprocess.Popen:
     return subprocess.Popen(
         "./install_minik8s",
         shell=True,
@@ -33,12 +33,12 @@ def bash_installer_process_action() -> subprocess.Popen:
 
 
 @given("the user is installing the dev env for K8s")
-def exec_k8s_installer(bash_installer_process_menu):
+def test_expect_k8s_installer_is_running(bash_installer_process_menu):
     assert type(bash_installer_process_menu) is subprocess.Popen
 
 
 @given("is printed into the console a list of options")
-def check_the_options(bash_installer_process_menu):
+def test_expect_the_menu_is_printed(bash_installer_process_menu):
     std_out = bash_installer_process_menu.communicate()[0]
     assert "What do you need from the installer" in std_out
     assert "(C)heck the system requirements" in std_out
@@ -48,12 +48,16 @@ def check_the_options(bash_installer_process_menu):
 
 
 @when("the user selects the last one (EXIT)")
-def sniff_the_user_selection(bash_installer_process_action):
-    bash_installer_process_action.communicate(input="e\n")
+def simulate_the_user_selection_on_the_menu(
+    bash_installer_process_that_take_the_test_action,
+):
+    bash_installer_process_that_take_the_test_action.communicate(input="e\n")
 
 
 @then("the installer triggers the relative action")
 @then("the installation exit with code 0.")
-def take_action(bash_installer_process_action):
-    assert 0 == bash_installer_process_action.returncode
-    bash_installer_process_action.kill()
+def test_expect_the_installer_quit_with_exit_code_zero(
+    bash_installer_process_that_take_the_test_action,
+):
+    assert 0 == bash_installer_process_that_take_the_test_action.returncode
+    bash_installer_process_that_take_the_test_action.kill()
