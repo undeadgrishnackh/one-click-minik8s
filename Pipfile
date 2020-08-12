@@ -10,18 +10,19 @@ pre-commit = "*"
 flake8 = "*"
 pytest-describe-it = "*"
 pytest-html = "*"
-pytest-sugar = "*"
 pytest-cov = "*"
 pytest = "*"
 rich = "*"
 pytest-bdd = "*"
 setuptools = "*"
+pytest-pspec = "*"
 
 [requires]
 python_version = "3.7"
 
 [scripts]
-test = "export PYTHONPATH=.; pytest"
-coverage = "export PYTHONPATH=.; pytest --cov-report term --cov='modules' --verbose --verbosity=9 --cache-clear --rootdir='.'"
-coverageHtml = "export PYTHONPATH=.;  pytest --cov-report html --cov='modules'"
+test = "pytest"
+coverage = "pytest --cov-report term --cov='modules' --verbose --verbosity=9 --cache-clear --rootdir='.'"
+coverageHtml = "pytest --cov-report html --cov='modules'"
+coverageCircleCi = "pytest --junitxml=junit/test-result.xml --cov-report=xml --cov-report=html --cov='modules' --verbose --verbosity=9 --cache-clear --rootdir='.'"
 watch = "ptw tests/ -- --cov-report term --cov='modules'"
