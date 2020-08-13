@@ -7,7 +7,7 @@ from pytest_bdd import given, scenarios, then, when
 sys.path.append("./")  # noqa: E402
 from modules.installer import Installer  # isort:skip  # noqa: E402
 
-scenarios("./features/select_an_option_from_the_menu_test.feature")
+scenarios("./features/test_select_an_option_from_the_menu.feature")
 
 
 @pytest.fixture(scope="session", autouse=True)

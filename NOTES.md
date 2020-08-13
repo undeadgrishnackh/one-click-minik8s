@@ -3,18 +3,20 @@ After the local quality gates are done as well as the CI/CD implemented with Cir
 
 So let's start:  ✅ 🛠️ 🚧 🚨
 
- - 🚧 installer.py 
-    - 🚧 Unit: component creation and use
+ - ✅ installer.py 
+    - ✅ Unit: component creation and use
         - ✅ assert it has a menu
         - ✅ assert it has a console
         - ✅ assert it prints the welcome message
         - ✅ assert it prints the menu
-        - assert it asks the questions
-        - assert it perform the action requested
+        - ✅ assert it asks the questions
+        - ✅ assert it receives the wrong reply
+        - ✅ assert it receives the right reply
+        - ✅ assert it perform the action requested
     - 🛠️ BDD: user exec it via the installer_minik8s.
-        - assert it's a process
-        - assert it prints the welcome message
-        - assert the process was killed
+        - ✅ assert it's a process
+        - ✅ assert it prints the welcome message
+        - ✅ assert the process was killed
         
 - installer_menu.py
     - BDD: E2E tests to check the installer behaviours from an user perspective. Due to the

@@ -7,12 +7,15 @@ from pytest_bdd import given, scenarios, then, when
 sys.path.append("./")  # noqa: E402
 from modules.installer import Installer  # isort:skip # noqa: E402
 
-scenarios("./features/welcome_message.feature")
+scenarios("./features/test_welcome_message.feature")
+
+
+i_am_still_alive = None
 
 
 @pytest.fixture(scope="session", autouse=True)
 def bash_installer_process():
-    return subprocess.Popen("./install_minik8s", stdout=subprocess.PIPE)
+    return subprocess.Popen("./install_minik8s", stdout=subprocess.PIPE, shell=False)
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -33,4 +36,5 @@ def test_expect_the_installer_is_printing_something(bash_installer_output):
 @then("I read it as rich text.")
 def test_expect_the_tile_is_printed(bash_installer_output, bash_installer_process):
     assert b"Welcome to one-click-miniK8s!\n" in bash_installer_output
-    bash_installer_process.kill()
+    bash_installer_process.terminate()
+    assert bash_installer_process.returncode is not i_am_still_alive
