@@ -3,8 +3,9 @@ After the local quality gates are done as well as the CI/CD implemented with Cir
 
 So let's start:  ✅ 🛠️ 🚧 🚨
 
- - ✅ installer.py 
-    - ✅ Unit: component creation and use
+ - 🛠 installer.py
+    - 🚨 Refactor again removing all the branches and spy! 🚨
+    - 🛠 Unit: component creation and use
         - ✅ assert it has a menu
         - ✅ assert it has a console
         - ✅ assert it prints the welcome message
@@ -27,10 +28,11 @@ So let's start:  ✅ 🛠️ 🚧 🚨
         1. user exec installer_minik8s and after the title select action: TEST (fake doubles)
         1. user exec installer_minik8s and after the title select action: INSTALL (fake doubles)
     - Unit:
-        - assert the question
-        - assert the 4 options
-        - assert the 4 actions related to every option
-        - assert the user input with a STUB (Exit simulation)
+        - ✅ assert the question
+        - ✅ assert the 4 options
+        - ✅ assert the 4 actions related to every option
+        - ✅ assert the user input with a STUB (Exit simulation)
+        - 🚧 assert the wrong user input with two stubs (input + exit)
 
 - installer_title.py
     - Unit:

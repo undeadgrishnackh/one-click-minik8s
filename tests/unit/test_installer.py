@@ -4,6 +4,7 @@ import pytest
 
 sys.path.append("./")  # noqa: E402
 from modules.installer import Installer  # isort:skip  # noqa: E402
+from tests.unit.doubles.fake_exit import FakeExit  # isort:skip # noqa: E402
 
 
 def test_expect_all_the_sub_modules_are_created():
@@ -54,12 +55,3 @@ def test_expect_the_installer_execs_the_related_option(capsys):
     )
     out, err = capsys.readouterr()
     assert "Goodbye!" in out
-
-
-class FakeExit:
-    def __init__(self):
-        self.exit_code = 0
-        self.GOODBYE_MESSAGE = "Goodbye!"
-
-    def perform_the_action(self):
-        print(self.GOODBYE_MESSAGE)
