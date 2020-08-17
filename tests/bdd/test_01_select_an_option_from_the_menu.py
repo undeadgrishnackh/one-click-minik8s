@@ -23,7 +23,7 @@ def bash_installer_process() -> subprocess.Popen:
 
 @pytest.fixture(scope="session", autouse=True)
 def bash_installer_process_after_the_action(bash_installer_process):
-    stdout, stderr = bash_installer_process.communicate(input="e\n")
+    stdout, stderr = bash_installer_process.communicate(input="e\n", timeout=2)
     return stdout
 
 
@@ -34,6 +34,7 @@ def test_expect_k8s_installer_is_running(bash_installer_process):
 
 @given("is printed into the console the menu's options")
 def test_expect_the_menu_is_printed(bash_installer_process_after_the_action):
+    """🧬 expect the menu is visualized"""
     assert (
         "What do you need from the installer" in bash_installer_process_after_the_action
     )

@@ -8,47 +8,29 @@ from modules.installer_menu import Menu  # isort:skip # noqa: E402
 from tests.unit.doubles.fake_exit import FakeExit  # isort:skip # noqa: E402
 
 
-@pytest.fixture(scope="module", autouse=True)
-def menu() -> Menu:
-    return Menu()
-
-
 def test_the_menu_dictionary(menu):
     """🔬 expect the correct menu: question and options"""
-    question = "[red]>>>[/red] What do you need from the installer :question:"
-    menu_element_1 = "[bold red](C)[/bold red]heck the system requirements"
-    menu_element_2 = "[bold red](T)[/bold red]est miniK8s"
-    menu_element_3 = "[bold red](I)[/bold red]nstall miniK8s"
-    menu_element_4 = "[bold red](E)[/bold red]xit"
-    assert question == menu.menu_question
-    assert menu_element_1 == menu.menu_options[1]["menu_option_desc"]
-    assert menu_element_2 in menu.menu_options[2]["menu_option_desc"]
-    assert menu_element_3 in menu.menu_options[3]["menu_option_desc"]
-    assert menu_element_4 in menu.menu_options[4]["menu_option_desc"]
+    assert MENU_QUESTION == menu.menu_question
+    assert MENU_ELEMENT_1 == menu.menu_options[1]["menu_option_desc"]
+    assert MENU_ELEMENT_2 in menu.menu_options[2]["menu_option_desc"]
+    assert MENU_ELEMENT_3 in menu.menu_options[3]["menu_option_desc"]
+    assert MENU_ELEMENT_4 in menu.menu_options[4]["menu_option_desc"]
 
 
 def test_the_menu_action_classes(menu):
     """🔬 expect the correct menu: classes to handle the user selection"""
-    menu_action_class_1 = "Check"
-    menu_action_class_2 = "Test"
-    menu_action_class_3 = "Install"
-    menu_action_class_4 = "Exit"
-    assert menu_action_class_1 == menu.menu_options[1]["menu_option_action_class"]
-    assert menu_action_class_2 in menu.menu_options[2]["menu_option_action_class"]
-    assert menu_action_class_3 in menu.menu_options[3]["menu_option_action_class"]
-    assert menu_action_class_4 in menu.menu_options[4]["menu_option_action_class"]
+    assert MENU_ACTION_CLASS_1 == menu.menu_options[1]["menu_option_action_class"]
+    assert MENU_ACTION_CLASS_2 in menu.menu_options[2]["menu_option_action_class"]
+    assert MENU_ACTION_CLASS_3 in menu.menu_options[3]["menu_option_action_class"]
+    assert MENU_ACTION_CLASS_4 in menu.menu_options[4]["menu_option_action_class"]
 
 
 def test_the_menu_option_shortcut(menu):
     """🔬 expect the correct menu: shortcut to activate an option"""
-    menu_shortcut_1 = "C"
-    menu_shortcut_2 = "T"
-    menu_shortcut_3 = "I"
-    menu_shortcut_4 = "E"
-    assert menu_shortcut_1 == menu.menu_options[1]["menu_option_shortcut"]
-    assert menu_shortcut_2 in menu.menu_options[2]["menu_option_shortcut"]
-    assert menu_shortcut_3 in menu.menu_options[3]["menu_option_shortcut"]
-    assert menu_shortcut_4 in menu.menu_options[4]["menu_option_shortcut"]
+    assert MENU_SHORTCUT_1 == menu.menu_options[1]["menu_option_shortcut"]
+    assert MENU_SHORTCUT_2 in menu.menu_options[2]["menu_option_shortcut"]
+    assert MENU_SHORTCUT_3 in menu.menu_options[3]["menu_option_shortcut"]
+    assert MENU_SHORTCUT_4 in menu.menu_options[4]["menu_option_shortcut"]
 
 
 def test_how_is_printed_the_menu(capsys):
@@ -65,54 +47,29 @@ def test_how_is_printed_the_menu(capsys):
     assert "└────────────────────────────────────────────┘" in out
 
 
-def test_stub_a_valid_user_input(monkeypatch):
+def test_stub_a_valid_user_input(valid_user_selection_key_stroke):
     """🔬 expect the menu gets the right user selection (builtins.input stubbed with an 'e')"""
-    monkeypatch.setattr("builtins.input", lambda _: "e")
-    user_selection = Menu().wait_the_answer()
-    assert user_selection == "e"
+    assert valid_user_selection_key_stroke == "e"
 
 
-def test_stub_an_invalid_user_input(monkeypatch, capsys):
+def test_stub_an_invalid_user_input(invalid_user_selection_stdout):
     """🔬 expect the menu gets the right user selection (builtins.input stubbed with an 'exit')"""
-    monkeypatch.setattr("builtins.input", lambda _: "exit")
-    Menu().wait_the_answer()
-    out, err = capsys.readouterr()
-    assert "Invalid option!" in out
-    assert "Too many wrong selection! Program aborted." in out
+    assert "Invalid option!" in invalid_user_selection_stdout
+    assert "Too many wrong selection! Program aborted." in invalid_user_selection_stdout
 
 
-def test_the_action_class_exit(monkeypatch):
-    """🔬 expect the menu gets the right action class after the user selected 'e' (Exit)"""
-    monkeypatch.setattr("builtins.input", lambda _: "e")
-    menu = Menu()
-    menu.wait_the_answer()
-    assert menu.get_the_action_class() == "Exit"
+@pytest.mark.parametrize(
+    "user_selection, expected_action_class",
+    [("e", "Exit"), ("c", "Check"), ("t", "Test"), ("i", "Install")],
+)
+def test_stub_a_valid_option_to_check_the_related_action_class(
+    menu_after_user_selection, user_selection, expected_action_class
+):
+    """❗ [ parametrize test] 🔬 expect the menu gets the right action class after the user selection: e, c, t, i"""
+    assert menu_after_user_selection.get_the_action_class() == expected_action_class
 
 
-def test_the_action_class_check(monkeypatch):
-    """🔬 expect the menu gets the right action class after the user selected 'c' (Check)"""
-    monkeypatch.setattr("builtins.input", lambda _: "c")
-    menu = Menu()
-    menu.wait_the_answer()
-    assert menu.get_the_action_class() == "Check"
-
-
-def test_the_action_class_test(monkeypatch):
-    """🔬 expect the menu gets the right action class after the user selected 't' (Test)"""
-    monkeypatch.setattr("builtins.input", lambda _: "t")
-    menu = Menu()
-    menu.wait_the_answer()
-    assert menu.get_the_action_class() == "Test"
-
-
-def test_the_action_class_install(monkeypatch):
-    """🔬 expect the menu gets the right action class after the user selected 'i' (Install)"""
-    monkeypatch.setattr("builtins.input", lambda _: "i")
-    menu = Menu()
-    menu.wait_the_answer()
-    assert menu.get_the_action_class() == "Install"
-
-
+# TODO: this test has to be extended with the other menu actions.
 def test_perform_the_action_exit(monkeypatch, capsys):
     """🔬 expect to spy an os.exit after selecting 'e' (Exit)"""
     monkeypatch.setattr("builtins.input", lambda _: "e")
@@ -123,3 +80,52 @@ def test_perform_the_action_exit(monkeypatch, capsys):
     out, err = capsys.readouterr()
     assert "Exit request caught." in out
     assert "Goodbye!" in out
+
+
+# ######################################################################################################################
+# CONSTANTS AND FIXTURES ###############################################################################################
+
+
+MENU_QUESTION = "[red]>>>[/red] What do you need from the installer :question:"
+MENU_ELEMENT_4 = "[bold red](E)[/bold red]xit"
+MENU_ELEMENT_3 = "[bold red](I)[/bold red]nstall miniK8s"
+MENU_ELEMENT_2 = "[bold red](T)[/bold red]est miniK8s"
+MENU_ELEMENT_1 = "[bold red](C)[/bold red]heck the system requirements"
+
+MENU_ACTION_CLASS_1 = "Check"
+MENU_ACTION_CLASS_2 = "Test"
+MENU_ACTION_CLASS_3 = "Install"
+MENU_ACTION_CLASS_4 = "Exit"
+
+MENU_SHORTCUT_1 = "C"
+MENU_SHORTCUT_2 = "T"
+MENU_SHORTCUT_3 = "I"
+MENU_SHORTCUT_4 = "E"
+
+
+@pytest.fixture(scope="module", autouse=True)
+def menu() -> Menu:
+    return Menu()
+
+
+@pytest.fixture()
+def valid_user_selection_key_stroke(monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda _: "e")
+    return Menu().wait_the_answer()
+
+
+@pytest.fixture()
+def invalid_user_selection_stdout(capsys, monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda _: "exit")
+    Menu().wait_the_answer()
+    out, err = capsys.readouterr()
+    return out
+
+
+@pytest.fixture
+def menu_after_user_selection(monkeypatch, user_selection):
+    print(user_selection)
+    monkeypatch.setattr("builtins.input", lambda _: user_selection)
+    menu = Menu()
+    menu.wait_the_answer()
+    return menu
