@@ -3,9 +3,9 @@ After the local quality gates are done as well as the CI/CD implemented with Cir
 
 So let's start:  ✅ 🛠️ 🚧 🚨
 
- - 🛠 installer.py
-    - 🚨 Refactor again removing all the branches and spy! 🚨
-    - 🛠 Unit: component creation and use
+ - ✅ installer.py
+    - ✅ 🚨 Refactor again removing all the branches and spy! 🚨
+    - ✅ Unit: component creation and use
         - ✅ assert it has a menu
         - ✅ assert it has a console
         - ✅ assert it prints the welcome message
@@ -14,25 +14,26 @@ So let's start:  ✅ 🛠️ 🚧 🚨
         - ✅ assert it receives the wrong reply
         - ✅ assert it receives the right reply
         - ✅ assert it perform the action requested
-    - 🛠️ BDD: user exec it via the installer_minik8s.
+    - ✅️ BDD: user exec it via the installer_minik8s.
         - ✅ assert it's a process
         - ✅ assert it prints the welcome message
         - ✅ assert the process was killed
         
-- installer_menu.py
-    - BDD: E2E tests to check the installer behaviours from an user perspective. Due to the
+- 🛠 installer_menu.py
+    - 🛠BDD: E2E tests to check the installer behaviours from an user perspective. Due to the
       system boundaries only EXIT can be tested without mocks/doubles. The others have to be
       tested with fake doubles to simulate happy (and maybe error - TBD) paths. 
-        1. user exec installer_minik8s and after the title select action: EXIT (no doubles)
+        1. ✅ user exec installer_minik8s and after the title select action: EXIT (no doubles)
+        1. user exec installer_minik8s and after the title select a wrong action
         1. user exec installer_minik8s and after the title select action: CHECK (fake doubles)
         1. user exec installer_minik8s and after the title select action: TEST (fake doubles)
         1. user exec installer_minik8s and after the title select action: INSTALL (fake doubles)
-    - Unit:
+    - ✅ Unit:
         - ✅ assert the question
         - ✅ assert the 4 options
         - ✅ assert the 4 actions related to every option
         - ✅ assert the user input with a STUB (Exit simulation)
-        - 🚧 assert the wrong user input with two stubs (input + exit)
+        - ✅ assert the wrong user input with two stubs (input + exit)
 
 - installer_title.py
     - Unit:

@@ -34,33 +34,24 @@ class Menu:
     menu_question = "[red]>>>[/red] What do you need from the installer :question:"
     user_selection = ""
 
-    def print_the_menu(self, print_the_menu=True):
-        if print_the_menu:
-            table = Table()
-            table.add_column(
-                self.menu_question, justify="left", style="white", no_wrap=True
-            )
-            for index in self.menu_options:
-                table.add_row(self.menu_options[index]["menu_option_desc"])
-            self.console.print(table)
+    def print_the_menu(self):
+        table = Table()
+        table.add_column(
+            self.menu_question, justify="left", style="white", no_wrap=True
+        )
+        for index in self.menu_options:
+            table.add_row(self.menu_options[index]["menu_option_desc"])
+        self.console.print(table)
 
-    def wait_the_answer(self, wait_user_input=True, fake_user_selection=None):
-        if wait_user_input:
-            self.get_a_valid_answer()
-        if fake_user_selection:
-            self.get_a_valid_answer(fake_user_selection)
+    def wait_the_answer(self):
+        self.get_a_valid_answer()
         return self.user_selection
 
-    def get_a_valid_answer(self, fake_user_selection=None):
-        if fake_user_selection is None:
-            self.user_selection = input(">>> ")
-            self.check_if_is_a_valid_answer()
-        else:
-            self.console.print(">>> " + fake_user_selection)
-            self.user_selection = fake_user_selection
-            self.check_if_is_a_valid_answer(fake_user_selection)
+    def get_a_valid_answer(self):
+        self.user_selection = input(">>> ")
+        self.check_if_is_a_valid_answer()
 
-    def check_if_is_a_valid_answer(self, fake_user_selection=None):
+    def check_if_is_a_valid_answer(self):
         for index in self.menu_options:
             if (
                 self.user_selection.upper()
@@ -75,8 +66,7 @@ class Menu:
             return
         else:
             self.wrong_selection += 1
-        if fake_user_selection is None:
-            self.get_a_valid_answer()
+        self.get_a_valid_answer()
 
     def get_the_action_class(self):
         for index in self.menu_options:
