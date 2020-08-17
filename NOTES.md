@@ -37,9 +37,9 @@ So let's start:  ✅ 🛠️ 🚧 🚨
 
 - installer_title.py
     - Unit:
-        - assert has a console
-        - assert the message
-        - assert the print message behaviour
+        - ✅ assert has a console
+        - ✅ assert the message, the title and the separator
+        - ✅ assert the print message behaviour
         
 - menu_elements.exit
     - unit:
