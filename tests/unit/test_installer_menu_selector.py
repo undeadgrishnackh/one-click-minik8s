@@ -65,7 +65,7 @@ def test_stub_an_invalid_user_input(invalid_user_selection_stdout):
 def test_stub_a_valid_option_to_check_the_related_action_class(
     menu_after_user_selection, user_selection, expected_action_class
 ):
-    """❗ [ parametrize test] 🔬 expect the menu gets the right action class after the user selection: e, c, t, i"""
+    """❗ [ parametrize test] 🔬 expect the menu gets the right action - selection: e, c, t, i"""
     assert menu_after_user_selection.get_the_action_class() == expected_action_class
 
 
