@@ -20,7 +20,7 @@
 ## The solution and why it looks like this...
 The challenge behind the language to handle the installation workflow was not so easy: 
 - 🔦 Bash: leaving the code in bash wasn't an option for me. I was looking to enhance the code improving the modularization, the readability and last but not least, to have a better test suite from unit to integration to full E2E. The TDD test frameworks on bash aren't so advanced, so I spiked a bit on bats but I wasn't happy about the code. It wasn't so clean as I was aiming.
-- 🧗‍♂️ Nodejs: with NodeJS was easier having everything with a perfect TDD flow, but the end-user might be without NodeJS so it wasn't a suitable option. Have an installer that need to install the installer engine is kinda silly 🤡. 
+- 🧗 Nodejs: with NodeJS was easier having everything with a perfect TDD flow, but the end-user might be without NodeJS so it wasn't a suitable option. Have an installer that need to install the installer engine is kinda silly 🤡. 
 - 🚀 Python: is native on OSX and Linux, and on windows it became more easy to install as well directly from the store in few clicks. But because I don't consider windows a suitable platform for development (sorry windows lover I joined the dark side 🍎) I focused only on Mac OSX with the idea to extend the project one day to Linux 🐧.
 
 🐍 **Python** incapsulates the installation workflow using some libs to enhance the user experience:

@@ -13,9 +13,7 @@ class Installer:
         self.menu = Menu()
         self.title = Title()
 
-    def start(
-        self, fake_action_class=None,
-    ):
+    def start(self, fake_action_class=None):
         self.title.print_welcome_message()
         self.menu.print_the_menu()
         self.menu.wait_the_answer()
