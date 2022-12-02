@@ -5,19 +5,19 @@ import subprocess
 class StepBrew:
     @staticmethod
     def is_brew_installed():
-        return True if shutil.which("brew") else False
+        return bool(shutil.which("brew"))
 
     @staticmethod
     def is_xcodebuild_installed():
-        return True if shutil.which("xcodebuild") else False
+        return bool(shutil.which("xcodebuild"))
 
     @staticmethod
     def is_ruby_installed():
-        return True if shutil.which("ruby") else False
+        return bool(shutil.which("ruby"))
 
     @staticmethod
     def is_curl_installed():
-        return True if shutil.which("curl") else False
+        return bool(shutil.which("curl"))
 
     @staticmethod
     def install_brew():

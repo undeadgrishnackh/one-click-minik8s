@@ -17,6 +17,6 @@ class Title:
         self.description = DESCRIPTION
 
     def print_welcome_message(self):
-        self.console.print("%s" % WELCOME_MESSAGE)
-        self.console.print("%s" % SEPARATOR)
-        self.console.print("%s" % DESCRIPTION)
+        self.console.print(f"{WELCOME_MESSAGE}")
+        self.console.print(f"{SEPARATOR}")
+        self.console.print(f"{DESCRIPTION}")
