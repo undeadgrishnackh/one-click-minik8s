@@ -9,8 +9,7 @@ from modules.installer import Installer  # isort:skip # noqa: E402
 
 @pytest.fixture(autouse=True)
 def install_process():
-    cmd_process = subprocess.Popen("./install_minik8s", stdout=subprocess.PIPE)
-    return cmd_process
+    return subprocess.Popen("./install_minik8s", stdout=subprocess.PIPE)
 
 
 @pytest.fixture(autouse=True)
